@@ -17,6 +17,7 @@ import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,8 +48,27 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+@Composable
+fun ColumnScope.CustomItem(width: Int, weight: Float, color: Color = MaterialTheme.colorScheme.primary){
+    Surface(
+        color = color,
+        modifier = Modifier
+            .width(width.dp)
+            .weight(weight)
+    ){}
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-
+    FirstProjectTheme {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CustomItem(width = 50, weight = 1f, color = MaterialTheme.colorScheme.tertiary)
+            CustomItem(width = 100, weight = 1f)
+        }
+    }
 }
